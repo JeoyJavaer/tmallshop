@@ -31,7 +31,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public BaseResponse handleAllError(HttpServletRequest req, Exception e) {
-        log.error("系统内部异常",e);
+//        log.error("系统内部异常",e);
         return BaseResponse.fail();
     }
 
@@ -46,7 +46,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public BaseResponse handleBizError(HttpServletRequest req,BaseException e){
-        log.error("业务异常",e);
+//        log.error("业务异常",e);
         return BaseResponse.fail(e.getMsg());
     }
 

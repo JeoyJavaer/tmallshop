@@ -2,8 +2,6 @@ package master.springbootmvc.tmall.dao;
 
 import master.springbootmvc.tmall.model.UserInformation;
 
-import java.util.List;
-
 public interface UserinformationDao {
     int deleteByPrimaryKey(Integer id);
 

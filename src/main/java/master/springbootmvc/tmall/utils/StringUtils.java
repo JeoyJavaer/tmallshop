@@ -54,6 +54,10 @@ public class StringUtils {
         return result;
     }
 
+
+    public static boolean isEmpty(final CharSequence cs) {
+        return cs == null || cs.length() == 0;
+    }
     public boolean isPhone(String phone) {
         Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
         Matcher m = p.matcher(phone);

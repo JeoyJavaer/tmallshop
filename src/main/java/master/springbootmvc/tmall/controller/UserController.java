@@ -32,7 +32,7 @@ public class UserController {
     @GetMapping(value = "/login")
     public String login(HttpServletRequest request, Model model) {
         String token = TokenProcessor.getInstance().makeToken();
-        log.info("进入登录界面，token:"+token);
+//        log.info("进入登录界面，token:"+token);
         request.getSession().setAttribute("token",token);
         model.addAttribute("token",token);
         return "page/login_page";
@@ -66,6 +66,6 @@ public class UserController {
 
         }
 
-
+        return null;
     }
 }

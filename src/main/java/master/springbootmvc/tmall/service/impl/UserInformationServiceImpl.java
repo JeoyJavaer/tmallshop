@@ -3,9 +3,11 @@ package master.springbootmvc.tmall.service.impl;
 import master.springbootmvc.tmall.dao.UserinformationDao;
 import master.springbootmvc.tmall.model.UserInformation;
 import master.springbootmvc.tmall.service.UserInformationService;
+import master.springbootmvc.tmall.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +21,7 @@ import java.util.List;
 @Service
 public class UserInformationServiceImpl implements UserInformationService {
 
-    @Autowired
+    @Resource
     private UserinformationDao userinformationDao;
 
     @Override
@@ -59,7 +61,11 @@ public class UserInformationServiceImpl implements UserInformationService {
 
     @Override
     public int selectIdByPhone(String phone) {
-        return userinformationDao.selectUserByPhone(phone).getId();
+        UserInformation userInformation = userinformationDao.selectUserByPhone(phone);
+        if (null == userInformation) {
+            return  0;
+        }
+        return userInformation.getId();
     }
 
     @Override

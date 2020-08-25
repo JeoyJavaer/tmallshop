@@ -4,19 +4,15 @@ import lombok.extern.slf4j.Slf4j;
 import master.springbootmvc.tmall.model.UserInformation;
 import master.springbootmvc.tmall.model.UserPassword;
 import master.springbootmvc.tmall.service.UserInformationService;
-import master.springbootmvc.tmall.service.UserPasswordServices;
+import master.springbootmvc.tmall.service.UserPasswordService;
 import master.springbootmvc.tmall.token.TokenProcessor;
 import master.springbootmvc.tmall.utils.SaveSession;
 import master.springbootmvc.tmall.utils.StringUtils;
-import org.apache.ibatis.javassist.bytecode.stackmap.TypeData;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
@@ -30,11 +26,11 @@ import java.util.Date;
 @Controller
 @Slf4j
 public class UserController {
-    @Autowired
+    @Resource
     private UserInformationService userInformationService;
 
-    @Autowired
-    private UserPasswordServices userPasswordServices;
+    @Resource
+    private UserPasswordService userPasswordServices;
 
     @GetMapping(value = {"/", "/login"})
     public String login(HttpServletRequest request, Model model) {
@@ -85,21 +81,25 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(HttpServletRequest request, @RequestParam String phone,
-                        @RequestParam String password, @RequestParam String token) {
+                              @RequestParam String password, @RequestParam String token) {
         String loginToken = (String) request.getSession().getAttribute("token");
         if (StringUtils.isEmpty(phone) || StringUtils.isEmpty(password)) {
-            return "redirect:/login";
+            return "rediret:login";
+//            return BaseResponse.fail("redirect:/login");
         }
         if (StringUtils.isEmpty(token) || !org.apache.commons.lang3.StringUtils.equals(token, loginToken)) {
             return "redirect:/login";
+//            return BaseResponse.fail("redirect:/login");
         }
 
         boolean b = getId(phone, password, request);
         if (!b) {
-            return "redirect:/login?msg=手机号不存在";
+            return "page/login_page";
+//            return BaseResponse.fail("redirect:/login");
         }
 
-        return "redirect:/";
+        return "redirect:/index";
+//        return BaseResponse.success("登录成功");
 
     }
 
@@ -133,7 +133,6 @@ public class UserController {
         if (!org.apache.commons.lang3.StringUtils.equals(md5, userPassword.getPassword())) {
             return false;
         }
-
         request.getSession().setAttribute("userInformation", userInformation);
         request.getSession().setAttribute("uid", uid);
         SaveSession.getInstance().save(phone, System.currentTimeMillis());

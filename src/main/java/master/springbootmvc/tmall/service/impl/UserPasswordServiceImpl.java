@@ -2,7 +2,7 @@ package master.springbootmvc.tmall.service.impl;
 
 import master.springbootmvc.tmall.dao.UserPasswordDao;
 import master.springbootmvc.tmall.model.UserPassword;
-import master.springbootmvc.tmall.service.UserPasswordServices;
+import master.springbootmvc.tmall.service.UserPasswordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * @since 1.0.0
  */
 @Service
-public class UserPasswordServicesImpl implements UserPasswordServices {
+public class UserPasswordServiceImpl implements UserPasswordService {
 
     @Autowired
     private UserPasswordDao userPasswordDao;

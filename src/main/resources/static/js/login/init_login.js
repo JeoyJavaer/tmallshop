@@ -40,8 +40,8 @@ $(function () {
             return;
         }
         $.ajax({
-            url: 'checkCode.do',
-            dataType: 'JSON',
+            url: 'checkCode',
+            dataType: 'json',
             type: 'post',
             data: {name: name, phone: phone, code: code,token:token},
             success: function (data) {
@@ -74,8 +74,8 @@ $(function () {
         }
         if (from_which === 1) {
             $.ajax({
-                url: 'insertUser.do',
-                dataType: 'JSON',
+                url: 'insertUser',
+                dataType: 'json',
                 type: 'post',
                 data: {password: password, token: token},
                 success: function (data) {
@@ -83,17 +83,17 @@ $(function () {
                     if (result === 1) {
                         window.location.href = '/';
                     } else if (result === 0) {
-                        alert('发送了错误，0但是我不说');
+                        console.log('发送了错误，0但是我不说');
                     } else {
-                        alert('发送了错误，但是我不说');
+                        console.log('发送了错误，但是我不说');
                     }
                 }
 
             });
         } else {
             $.ajax({
-                url: 'updatePassword.do',
-                dataType: 'JSON',
+                url: 'updatePassword',
+                dataType: 'json',
                 type: 'post',
                 data: {password: password, token: token},
                 success: function (data) {
@@ -101,9 +101,9 @@ $(function () {
                     if (result === 1) {
                         window.location.href = '/';
                     } else if (result === 0) {
-                        alert('发送了错误，0但是我不说');
+                        console.log('发送了错误，0但是我不说');
                     } else {
-                        alert('发送了错误，但是我不说');
+                        console.log('发送了错误，但是我不说');
                     }
                 }
 
@@ -123,8 +123,8 @@ $(function () {
             return;
         }
         $.ajax({
-            url: 'checkCode.do',
-            dataType: 'JSON',
+            url: 'checkCode',
+            dataType: 'json',
             type: 'post',
             data: {phone: phone, code: code,token:token},
             success: function (data) {
@@ -224,23 +224,24 @@ $(function () {
             alert('请填写信息');
             return;
         }
-        $(this).submit();
-        // $.ajax({
-        //     url: "/login",
-        //     type: "POST",
-        //     dataType: "JSON",
-        //     data: {phone: login_name, password: login_password, token: login_token},
-        //     success: function (date) {
-        //         var result = date.wsk;
-        //         if (result === 3) {
-        //             window.location.href = '/';
-        //         } else if (result === 2) {
-        //             alert('手机或者密码错误!!!!!!');
-        //         } else if (result === 1) {
-        //             window.location.href = '/login';
-        //         }
-        //     }
-        // });
+        // $(this).submit();
+        $.ajax({
+            url: "/login",
+            type: "POST",
+            dataType: "json",
+            data: {phone: login_name, password: login_password, token: login_token},
+            success: function (date) {
+                console.log("login"+date);
+                // let result = date.result;
+                // if (result === 3) {
+                //     window.location.href = '/';
+                // } else if (result === 2) {
+                //     alert('手机或者密码错误!!!!!!');
+                // } else if (result === 1) {
+                //     window.location.href = '/index';
+                // }
+            }
+        });
     });
 
 //注册获取验证码
@@ -252,20 +253,21 @@ $(function () {
             return;
         }
         $.ajax({
-            url: 'sendCode.do',
-            dataType: 'JSON',
+            url: 'sendCode',
+            dataType: 'json',
             type: 'post',
             data: {phone: phone, token: token, action: 'register'},
             success: function (date) {
                 var result = date.result;
-                if (result === '1') {
+                if (result === 1) {
                     alert('已经发送到该手机，请查收');
-                } else if (result === '0') {
+                    console.log("验证码:"+date.data);
+                } else if (result === 0) {
                     alert('请填写正确的手机');
-                } else if (result === '-1') {
+                } else if (result === -1) {
                     alert('该手机号码已经被注册了');
                 } else {
-                    alert('发送了错误，但是我不告诉你');
+                    console.log('发送了错误，但是我不告诉你');
                 }
             }
 
@@ -280,17 +282,18 @@ $(function () {
             return;
         }
         $.ajax({
-            url: 'sendCode.do',
-            dataType: 'JSON',
+            url: 'sendCode',
+            dataType: 'json',
             type: 'post',
             data: {phone: phone, token: token, action: 'forget'},
             success: function (date) {
                 var result = date.result;
-                if (result === '1') {
+                if (result === 1) {
                     alert('已经发送到该手机，请查收');
-                } else if (result === '0') {
+                    console.log("验证码:"+date.data);
+                } else if (result === 0) {
                     alert('请填写正确的手机');
-                } else if (result === '-1') {
+                } else if (result === -1) {
                     alert('不存在该手机的用户');
                 } else {
                     alert('发送了错误，但是我不告诉你');

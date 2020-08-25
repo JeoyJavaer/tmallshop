@@ -9,7 +9,7 @@ import master.springbootmvc.tmall.model.UserPassword;
  * @created 2020/8/21
  * @since 1.0.0
  */
-public interface UserPasswordServices {
+public interface UserPasswordService {
 
     int deleteByPrimaryKey(Integer id);
 

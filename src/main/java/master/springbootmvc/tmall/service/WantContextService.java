@@ -14,7 +14,5 @@ import java.util.List;
  */
 public interface WantContextService  extends BaseService<WantContext,Integer> {
     List<WantContext> selectByUWid(int uwid, int start);
-
     int getCounts(int uid);
-
 }

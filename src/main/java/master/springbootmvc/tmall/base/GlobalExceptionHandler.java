@@ -23,9 +23,9 @@ public class GlobalExceptionHandler {
 
     /**
      * 500  所有异常
-     * @param req
-     * @param e
-     * @return
+     * @param req  请求
+     * @param e 异常
+     * @return  失败
      */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

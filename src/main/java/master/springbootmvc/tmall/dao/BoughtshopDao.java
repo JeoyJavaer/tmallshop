@@ -1,21 +1,11 @@
 package master.springbootmvc.tmall.dao;
 
+import master.springbootmvc.tmall.base.MyBatisBaseDao;
 import master.springbootmvc.tmall.model.Boughtshop;
 
 import java.util.List;
 
-public interface BoughtshopDao {
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(Boughtshop record);
-
-    int insertSelective(Boughtshop record);
-
-    Boughtshop selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Boughtshop record);
-
-    int updateByPrimaryKey(Boughtshop record);
+public interface BoughtshopDao extends MyBatisBaseDao<Boughtshop,Integer> {
 
     List<Boughtshop>selectByUid(int uid,int state);
 }

@@ -1,17 +1,8 @@
 package master.springbootmvc.tmall.dao;
 
+import master.springbootmvc.tmall.base.MyBatisBaseDao;
 import master.springbootmvc.tmall.model.Adminopreation;
 
-public interface AdminopreationDao {
-    int deleteByPrimaryKey(Integer id);
+public interface AdminopreationDao extends MyBatisBaseDao<Adminopreation,Integer> {
 
-    int insert(Adminopreation record);
-
-    int insertSelective(Adminopreation record);
-
-    Adminopreation selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Adminopreation record);
-
-    int updateByPrimaryKey(Adminopreation record);
 }

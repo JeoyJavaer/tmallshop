@@ -1,5 +1,6 @@
 package master.springbootmvc.tmall.service;
 
+import master.springbootmvc.tmall.base.BaseService;
 import master.springbootmvc.tmall.model.UserInformation;
 import org.apache.catalina.User;
 
@@ -12,18 +13,8 @@ import java.util.List;
  * @create 2020/8/21
  * @since 1.0.0
  */
-public interface UserInformationService {
-    int deleteByPrimaryKey(Integer id);
+public interface UserInformationService extends BaseService<UserInformation,Integer> {
 
-    int insert(UserInformation record);
-
-    int insertSelective(UserInformation record);
-
-    UserInformation selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(UserInformation record);
-
-    int updateByPrimaryKey(UserInformation record);
 
     UserInformation selectUserByPhone(String phone);
 

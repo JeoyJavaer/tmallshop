@@ -1,7 +1,7 @@
 package master.springbootmvc.tmall.service;
 
 import master.springbootmvc.tmall.base.BaseService;
-import master.springbootmvc.tmall.model.GoodsCar;
+import master.springbootmvc.tmall.model.UserWant;
 
 import java.util.List;
 
@@ -9,11 +9,9 @@ import java.util.List;
  * <br>〈功能简述〉<br>
  *
  * @author Administrator
- * @create 2020/8/25
+ * @create 2020/8/26
  * @since 1.0.0
  */
-public interface GoodsCarService extends BaseService<GoodsCar,Integer> {
-
-
-    List<GoodsCar> selectByUid(int uid);
+public interface UserWantService extends BaseService<UserWant,Integer> {
+    List<UserWant> selectByUid(int uid, int start);
 }

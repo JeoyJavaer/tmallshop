@@ -22,7 +22,7 @@
     select
     <include refid="Base_Column_List" />
     from userstate
-    where uid = #{uid,jdbcType} limit 1
+    where uid = #{uid,jdbcType=INTEGER} limit 1
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

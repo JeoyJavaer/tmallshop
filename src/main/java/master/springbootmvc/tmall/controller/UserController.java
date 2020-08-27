@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 /**
- * <br>〈功能简述〉<br>
+ * <br>〈用户〉<br>
  *
  * @author Administrator
  * @created 2020/8/21
@@ -40,6 +40,7 @@ public class UserController {
         model.addAttribute("token", token);
         return "page/login_page";
     }
+
 
     @RequestMapping(value = "/logout")
     public String logout(HttpServletRequest request) {
